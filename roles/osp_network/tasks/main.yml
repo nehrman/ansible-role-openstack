@@ -1,0 +1,51 @@
+---
+# tasks file for osp_network
+- name: Ensure Public Network is present
+  os_network:
+    name: pubnetwork1
+    state: present
+    cloud: ospcloud
+    external: true
+
+- name: Ensure Public Subnet Network is present
+  os_subnet:
+    name: public
+    state: present
+    network_name: pubnetwork1
+    cidr: 10.10.10.0/24
+    host_routes:
+      - destination: 0.0.0.0/24
+        nexthop: 10.10.10.0
+      - destination: 192.168.0.0/24
+        nexthop: 192.168.0.0
+    dns_nameservers:
+      - 8.8.8.7
+      - 8.8.8.8
+    cloud: ospcloud
+
+- name: Ensure Private Network is present
+  os_network:
+    name: privnetwork1
+    state: present
+    cloud: ospcloud
+
+- name: Ensure Private Subnet Network is present
+  os_subnet:
+    name: private
+    state: present
+    network_name: privnetwork1
+    cidr: 20.20.20.0/24
+    cloud: ospcloud
+
+- name: Ensure Router is present
+  os_router:
+    cloud: ospcloud
+    state: present
+    name: router1
+    network: pubnetwork1
+    external_fixed_ips:
+      - subnet: public
+        ip: 10.10.10.3
+    interfaces:
+      - private
+  

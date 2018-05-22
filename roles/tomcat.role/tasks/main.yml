@@ -1,0 +1,26 @@
+---
+- name: Install Tomcat packages
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - tomcat
+
+- name: Enable Tomcat a boot
+  service:
+    name: tomcat
+    state: started
+    enabled: yes
+
+- name: create tomcat default web directory
+  file:
+    path: "{{ tomcat_web_root }}"
+    state: directory
+
+- name: copy static index.html to tomcat webroot
+  template:
+    src: index.html.j2
+    dest: "{{ tomcat_web_root }}/index.html"
+    mode: 0644
+  notify:
+    - restart tomcat

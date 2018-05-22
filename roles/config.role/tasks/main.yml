@@ -1,0 +1,11 @@
+---
+- name: Remove old repos
+  shell: rm /etc/yum.repos.d/*.repo
+
+- name: Yum repository configuration for instances
+  copy:
+     src: files/internal.repo
+     dest: /etc/yum.repos.d/internal.repo
+     mode: 0644
+     backup: yes
+

@@ -1,0 +1,8 @@
+---
+instance_name: frontend
+instance_flavor: m2.small
+instance_image: rhel-guest
+instance_keypair: keypair1
+instance_meta: "group=frontends,deployment_name=QA"
+instance_network: "net-name=privnetwork1"
+instance_secgroups: sg_frontend 

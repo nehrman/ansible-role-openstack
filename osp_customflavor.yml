@@ -1,0 +1,15 @@
+---
+- name: Create Custom Flavor
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Ensure Custom Flavor is present
+      os_nova_flavor:
+        name: m2.small
+        state: present
+        cloud: ospcloud
+        ram: 2048
+        vcpus: 1
+        disk: 10

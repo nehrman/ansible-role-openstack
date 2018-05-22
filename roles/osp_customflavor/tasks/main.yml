@@ -1,0 +1,10 @@
+---
+# tasks file for osp_customflavor
+- name: Ensure Custom Flavor is present
+  os_nova_flavor:
+    name: m2.small
+    state: present
+    cloud: ospcloud
+    ram: 2048
+    vcpus: 1
+    disk: 10

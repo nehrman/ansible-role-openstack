@@ -1,0 +1,19 @@
+---
+- name: Create KeyPair for Openstack
+  hosts: localhost
+  connection: local
+
+  tasks:
+
+    - name: Generate key files
+      user:
+        name: "{{ ansible_env.USER }}"
+        generate_ssh_key: yes
+        ssh_key_file: .ssh/test_id_rsa
+
+    - name: Ensure Keyair is present
+      os_keypair:
+        name: keypair1
+        state: present
+        cloud: ospcloud
+        public_key_file: "{{ ansible_env.HOME }}/.ssh/test_id_rsa.pub" 

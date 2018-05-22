@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  gather_facts: true 
+  roles:
+    - osp_facts
+
+- hosts: frontends
+  become: yes
+  roles:
+    - config.role
+    - haproxy.role
+
+- hosts: apps
+  become: yes
+  roles:
+    - config.role
+    - tomcat.role
+
+- hosts: appsdb
+  become: yes
+  roles:
+    - config.role
+    - postgresql.role

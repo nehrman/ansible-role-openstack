@@ -1,0 +1,37 @@
+---
+# tasks file for ./roles/osp_provision
+- name: Ensure "{{ instance_name }}" Intance is present
+  os_server:
+    name: "{{ instance_name }}"
+    state: present
+    cloud: ospcloud
+    flavor: "{{ instance_flavor }}"
+    image: "{{ instance_image }}"
+    key_name: "{{ instance_keypair }}"
+    meta: "{{ instance_meta }}"
+    nics: "{{ instance_network }}"
+    security_groups: "{{ instance_secgroups }}"
+  register: os_instance_r
+
+- name: Add floating IP to "{{ instance_name }}"
+  os_floating_ip: 
+    server: "{{ instance_name }}"
+    cloud: ospcloud
+    network: pubnetwork1
+    state: present
+    reuse: yes
+    wait: true
+    timeout: 180
+  register: os_instance_floatingip_r
+
+- name: show "{{ instance_name }}" public ip
+  debug: var=os_instance_floatingip_r.floating_ip.floating_ip_address
+
+- name: Wait for "{{ instance_name }}" to be available
+  wait_for:
+    host: "{{ os_instance_floatingip_r.floating_ip.floating_ip_address }}"
+    port: 22
+    search_regex: OpenSSH
+    timeout: 600
+  delegate_to: localhost
+

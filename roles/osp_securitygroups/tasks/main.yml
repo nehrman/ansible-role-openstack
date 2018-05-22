@@ -1,0 +1,62 @@
+---
+# tasks file for ./roles/osp_securitygroups
+- name: Create and configure Frontends Security Groups
+  os_security_group:
+    name: sg_frontend
+    state: present
+    cloud: ospcloud
+    description: "Security Group for Frontends"
+
+- name: Create and configure Frontends Security Groups Rules
+  os_security_group_rule: 
+    state: present
+    cloud: ospcloud
+    security_group: sg_frontend
+    protocol: tcp
+    port_range_min: "{{ item.port }}"
+    port_range_max: "{{ item.port }}"
+    remote_ip_prefix: "{{ item.prefix }}"
+  with_items:
+    - { port: '80', prefix: '0.0.0.0/0' }
+    - { port: '22', prefix: '0.0.0.0/0' }
+    - { port: '443', prefix: '0.0.0.0/0' } 
+
+- name: Create and configure Apps Security Groups
+  os_security_group:
+    name: sg_apps
+    state: present
+    cloud: ospcloud
+    description: "Security Group for Apps"
+
+- name: Create and configure Apps Security Groups Rules
+  os_security_group_rule:
+    state: present
+    cloud: ospcloud
+    security_group: sg_apps
+    protocol: tcp
+    port_range_min: "{{ item.port }}"
+    port_range_max: "{{ item.port }}"
+    remote_ip_prefix: "{{ item.prefix }}"
+  with_items:
+    - { port: '8080', prefix: '0.0.0.0/0' }
+    - { port: '22', prefix: '0.0.0.0/0' }
+
+- name: Create and configure DBs Security Groups
+  os_security_group:
+    name: sg_dbs
+    state: present
+    cloud: ospcloud
+    description: "Security Group for Apps"
+
+- name: Create and configure DBs Security Groups Rules
+  os_security_group_rule:
+    state: present
+    cloud: ospcloud
+    security_group: sg_dbs
+    protocol: tcp
+    port_range_min: "{{ item.port }}"
+    port_range_max: "{{ item.port }}"
+    remote_ip_prefix: "{{ item.prefix }}"
+  with_items:
+    - { port: '5432', prefix: '0.0.0.0/0' }
+    - { port: '22', prefix: '0.0.0.0/0' }    
