@@ -2,7 +2,6 @@
 - name: Create KeyPair for Openstack
   hosts: localhost
   connection: local
-  become: yes
 
   tasks:
 
