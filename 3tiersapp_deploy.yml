@@ -1,8 +1,8 @@
 ---
-- hosts: localhost
-  gather_facts: false 
-  roles:
-    - osp_facts
+# - hosts: localhost
+#   gather_facts: false
+  # roles:
+  #   - osp_facts
 
 - hosts: frontends
   become: yes
