@@ -9,14 +9,14 @@
       user:
         name: "{{ ansible_env.USER }}"
         generate_ssh_key: yes
-        ssh_key_file: ".ssh/{{ ansible_env.USER }}_id_rsa"
+        ssh_key_file: ".ssh/{{ keypair_name }}_id_rsa"
 
     - name: Add Generated Key to Ansible Tower Credentials
       tower_credential:
         name: "{{ keypair_name }}"
         kind: ssh
         organization: Ansible Demo
-        ssh_key_data: ".ssh/{{ ansible_env.USER }}_id_rsa"
+        ssh_key_data: ".ssh/{{ keypair_name }}_id_rsa"
         username: cloud-user
         become_method: sudo
         become_username: root
