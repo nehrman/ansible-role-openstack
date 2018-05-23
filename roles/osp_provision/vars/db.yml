@@ -1,8 +1,8 @@
 ---
 instance_name: db
-instance_flavor: m2.small
-instance_image: rhel-guest
-instance_keypair: keypair1
+instance_flavor: m1.small
+instance_image: rhel-server-7.4-x86_64
+instance_keypair: "{{ keypair_name }}"
 instance_meta: "group=appdbs,deployment_name=QA"
-instance_network: "net-name=privnetwork1"
-instance_secgroups: sg_dbs 
+instance_network: "net-name=priv-net"
+instance_secgroups: sg_dbs

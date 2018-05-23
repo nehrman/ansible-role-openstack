@@ -4,13 +4,13 @@
   connection: local
 
   roles:
-    - osp_network
+  #  - osp_network
     - osp_keypair
-    - osp_customflavor
+  #  - osp_customflavor
     - osp_securitygroups
 
   tasks:
-   
+
   - name: Deploy Frontend instance
     include_role:
        name: osp_provision
@@ -33,4 +33,4 @@
 
   - name: Create In-Memory Inventory
     include_role:
-       name: osp_facts 
+       name: osp_facts

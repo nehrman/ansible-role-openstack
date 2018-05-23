@@ -7,7 +7,7 @@
     cloud: "{{ cloud_name }}"
     flavor: "{{ instance_flavor }}"
     image: "{{ instance_image }}"
-    key_name: "{{ instance_keypair }}"
+    key_name: "{{ keypair_name }}"
     meta: "{{ instance_meta }}"
     nics: "{{ instance_network }}"
     security_groups: "{{ instance_secgroups }}"

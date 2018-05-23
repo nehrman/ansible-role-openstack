@@ -2,13 +2,13 @@
 # tasks file for osp_keypair
 - name: Generate key files
   user:
-    name: ansible
+    name: "{{ ansible_env.USER }}"
     generate_ssh_key: yes
-    ssh_key_file: .ssh/ansible_id_rsa
+    ssh_key_file: ".ssh/{{ keypair_name }}_id_rsa"
 
 - name: Ensure Keyair is present
   os_keypair:
-    name: keypair1
+    name: "{{ keypair_name }}"
     state: present
-    cloud: ospcloud
-    public_key_file: /home/ansible/.ssh/ansible_id_rsa.pub
+    cloud: "{{ cloud_name }}"
+    public_key_file: "{{ ansible_env.HOME }}/.ssh/{{ keypair_name }}_id_rsa.pub"
