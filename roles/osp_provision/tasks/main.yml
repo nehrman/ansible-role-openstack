@@ -4,7 +4,7 @@
   os_server:
     name: "{{ instance_name }}"
     state: present
-    cloud: ospcloud
+    cloud: "{{ osp_cloud_name }}"
     flavor: "{{ instance_flavor }}"
     image: "{{ instance_image }}"
     key_name: "{{ instance_keypair }}"
@@ -14,10 +14,10 @@
   register: os_instance_r
 
 - name: Add floating IP to "{{ instance_name }}"
-  os_floating_ip: 
+  os_floating_ip:
     server: "{{ instance_name }}"
-    cloud: ospcloud
-    network: pubnetwork1
+    cloud: "{{ osp_cloud_name }}"
+    network: "{{ osp_pub_network }}"
     state: present
     reuse: yes
     wait: true
@@ -34,4 +34,3 @@
     search_regex: OpenSSH
     timeout: 600
   delegate_to: localhost
-
