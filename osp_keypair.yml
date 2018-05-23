@@ -13,7 +13,7 @@
 
     - name: Ensure Keypair is present
       os_keypair:
-        name: keypair1
+        name: "{{ keypair_name }}"
         state: present
         cloud: "{{ cloud_name }}"
         public_key_file: "{{ ansible_env.HOME }}/.ssh/test_id_rsa.pub"
