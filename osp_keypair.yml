@@ -17,7 +17,7 @@
 
     - include_vars:
         "{{ config_file }}"
-      when: st.stat.exists and sts.stat.isreg
+      when: st.stat.exists and st.stat.isreg
 
     - debug:
         msg: "{{ clouds }}’"
