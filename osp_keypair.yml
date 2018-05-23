@@ -3,6 +3,9 @@
   hosts: localhost
   connection: local
 
+  vars:
+    cloud_name: "{{ lookup('env', 'OS_CLOUD') }}"
+
   tasks:
 
     - name: Generate key files
@@ -11,12 +14,9 @@
         generate_ssh_key: yes
         ssh_key_file: .ssh/test_id_rsa
 
-    - name: Show all configured clouds
-      os_client_config:
-
     - name: Ensure Keyair is present
       os_keypair:
         name: keypair1
         state: present
-        cloud: openstackdemo
+        cloud: "{{ cloud_name }}"
         public_key_file: "{{ ansible_env.HOME }}/.ssh/test_id_rsa.pub"
