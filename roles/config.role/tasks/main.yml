@@ -25,5 +25,5 @@
   shell: "rm -f /etc/yum.repos.d/*"
   tags: yum_clean
 
-- name: Configure repos needed to OCP
+- name: Configure repos needed for Apps
   command: subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms"
