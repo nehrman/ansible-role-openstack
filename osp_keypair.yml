@@ -8,6 +8,8 @@
 
   tasks:
 
+    - debug : var="{{ cloud_name }}"
+
     - name: Generate key files
       user:
         name: "{{ ansible_env.USER }}"
@@ -17,6 +19,7 @@
     - name: Ensure Keyair is present
       os_keypair:
         name: keypair1
+        auth_type:
         state: present
         cloud: "{{ cloud_name }}"
         public_key_file: "{{ ansible_env.HOME }}/.ssh/test_id_rsa.pub"
