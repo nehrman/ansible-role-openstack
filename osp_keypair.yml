@@ -15,5 +15,5 @@
       os_keypair:
         name: keypair1
         state: present
-        cloud: openstack
+        cloud: openstackdemo
         public_key_file: "{{ ansible_env.HOME }}/.ssh/test_id_rsa.pub"
