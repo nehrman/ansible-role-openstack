@@ -4,12 +4,12 @@
   connection: local
 
   vars:
-    cloud_name: "{{ lookup('env', 'OS_CLIENT_CONFIG_FILE') }}"
+    config_file: "{{ lookup('env', 'OS_CLIENT_CONFIG_FILE') }}"
 
   tasks:
 
     - debug :
-        var: cloud_name
+        var: config_file
 
     - name: Generate key files
       user:
