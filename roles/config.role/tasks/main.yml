@@ -10,7 +10,7 @@
 #      backup: yes
 
 - name: Ensure Katello Certs are present
-  shell: rpm -Uvh http://sat01.openhybridcloud.io/pub/katello-ca-consumer-latest.noarch.rpm
+  shell: "rpm -Uvh http://sat01.openhybridcloud.io/pub/katello-ca-consumer-latest.noarch.rpm"
 
 - name: Ensure System is registered
   redhat_subscription:
