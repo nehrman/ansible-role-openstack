@@ -14,3 +14,16 @@
     state: present
     activationkey: "{{ rh_qctivation_key }}"
     org_id: "{{ rh_org_id }}"
+
+- name: Disable all the enabled RHSM repositories
+  command: subscription-manager repos --disable="*"
+
+- name: Disable all yum repositories
+  command: yum-config-manager --disable \*
+
+- name: Remove all repo file in /etc/yum.repos.d/
+  shell: "rm -f /etc/yum.repos.d/*"
+  tags: yum_clean
+
+- name: Configure repos needed to OCP
+  command: subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms"
