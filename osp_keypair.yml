@@ -16,4 +16,4 @@
         name: "{{ keypair_name }}"
         state: present
         cloud: "{{ cloud_name }}"
-        public_key_file: /home/ansible/.ssh/ansible_id_rsa.pub"
+        public_key_file: /home/ansible/.ssh/ansible_id_rsa.pub
