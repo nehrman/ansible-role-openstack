@@ -12,7 +12,7 @@
 - name: Ensure System is registered
   redhat_subscription:
     state: present
-    activationkey: "{{ rh_qctivation_key }}"
+    activationkey: "{{ rh_activation_key }}"
     org_id: "{{ rh_org_id }}"
 
 - name: Disable all the enabled RHSM repositories
