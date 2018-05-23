@@ -8,7 +8,8 @@
 
   tasks:
 
-    - debug : var="{{ cloud_name }}"
+    - debug :
+        var: "{{ cloud_name }}"
 
     - name: Generate key files
       user:
