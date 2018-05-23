@@ -4,7 +4,7 @@
   connection: local
 
   vars:
-    cloud_name: "{{ lookup('env', 'OS_USERNAME') }}"
+    cloud_name: "{{ lookup('env', 'OS_CLIENT_CONFIG_FILE') }}"
 
   tasks:
 
