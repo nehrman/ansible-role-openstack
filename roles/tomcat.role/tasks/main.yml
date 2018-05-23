@@ -6,7 +6,7 @@
   with_items:
     - tomcat
 
-- name: Enable Tomcat a boot
+- name: Enable Tomcat at boot
   service:
     name: tomcat
     state: started
