@@ -7,13 +7,24 @@
 
     - name: Generate key files
       user:
-        name: ansible
+        name: "{{ ansible_env.USER }}"
         generate_ssh_key: yes
-        ssh_key_file: .ssh/test_id_rsa
+        ssh_key_file: ".ssh/{{ ansible_env.USER }}_id_rsa"
+
+    - name: Add Generated Key to Ansible Tower Credentials
+      tower_credential:
+        name: "{{ keypair_name }}"
+        kind: ssh
+        organization: Ansible Demo
+        ssh_key_data: ".ssh/{{ ansible_env.USER }}_id_rsa"
+        username: cloud-user
+        become_method: sudo
+        become_username: root
+        state: present
 
     - name: Ensure Keypair is present
       os_keypair:
         name: "{{ keypair_name }}"
         state: present
         cloud: "{{ cloud_name }}"
-        public_key_file: /home/ansible/.ssh/ansible_id_rsa.pub
+        public_key_file: "{{ ansible_env.HOME }}/.ssh/test_id_rsa.pub"
