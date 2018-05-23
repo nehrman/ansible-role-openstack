@@ -4,6 +4,7 @@
   user:
     name: "{{ ansible_env.USER }}"
     generate_ssh_key: yes
+    home: "{{ keypair_path }}"
     ssh_key_file: "{{ keypair_path }}/{{ keypair_name }}_id_rsa"
 
 - name: Ensure Keyair is present
