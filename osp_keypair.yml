@@ -9,7 +9,7 @@
   tasks:
 
     - debug :
-        var: config_file
+        msg: "{{ config_file }}"
 
     - name: Generate key files
       user:
