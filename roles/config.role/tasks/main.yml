@@ -1,11 +1,16 @@
 ---
-- name: Remove old repos
-  shell: rm /etc/yum.repos.d/*.repo
+# - name: Remove old repos
+#   shell: rm /etc/yum.repos.d/*.repo
+#
+# - name: Yum repository configuration for instances
+#   copy:
+#      src: files/internal.repo
+#      dest: /etc/yum.repos.d/internal.repo
+#      mode: 0644
+#      backup: yes
 
-- name: Yum repository configuration for instances
-  copy:
-     src: files/internal.repo
-     dest: /etc/yum.repos.d/internal.repo
-     mode: 0644
-     backup: yes
-
+- name: Ensure System is registered
+  redhat_subscription:
+    state: present
+    activationkey: "{{ rh_qctivation_key }}"
+    org_id: "{{ rh_org_id }}"
