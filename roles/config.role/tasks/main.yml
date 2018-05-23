@@ -26,4 +26,4 @@
   tags: yum_clean
 
 - name: Configure repos needed for Apps
-  command: subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms"
+  command: subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-rh-common-rpms" --enable="rhel-7-server-optional-rpms"
