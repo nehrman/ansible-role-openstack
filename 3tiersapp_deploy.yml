@@ -16,7 +16,7 @@
     - config.role
     - tomcat.role
 
-- hosts: appsdb
+- hosts: appdbs
   become: yes
   roles:
     - config.role
