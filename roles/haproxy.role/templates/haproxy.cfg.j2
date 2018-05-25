@@ -25,5 +25,8 @@ backend app-servers
     mode http
     balance roundrobin
     option forwardfor
-    server app1 app1.novalocal:8080 cookie app1 check
-    server app2 app2.novalocal:8080 cookie app2 check
+#    server app1 app1.novalocal:8080 cookie app1 check
+#    server app2 app2.novalocal:8080 cookie app2 check
+{% for host in groups['apps'] %}
+    server app{{loop.index}} {{hostvars[host]['openstack.accessIPv4']}}:8080 cookie app{{loop.index}} check
+{% endfor %}
