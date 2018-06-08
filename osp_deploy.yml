@@ -11,10 +11,10 @@
 
   tasks:
 
-  - name: Deploy Frontend instance
-    include_role:
-       name: osp_provision
-       vars_from: frontend.yml
+  # - name: Deploy Frontend instance
+  #   include_role:
+  #      name: osp_provision
+  #      vars_from: frontend.yml
 
   - name: Deploy app1 instance
     include_role:
@@ -26,10 +26,10 @@
        name: osp_provision
        vars_from: app2.yml
 
-  - name: Deploy Db instance
-    include_role:
-       name: osp_provision
-       vars_from: db.yml
+  # - name: Deploy Db instance
+  #   include_role:
+  #      name: osp_provision
+  #      vars_from: db.yml
 
   - name: Create In-Memory Inventory
     include_role:
