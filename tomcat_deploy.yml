@@ -1,0 +1,10 @@
+---
+- hosts: web
+  become: yes
+
+  tasks:
+
+    - name: Ensure Tomcat is installed and configured correctly
+      include_role:
+        name: tomcat.role
+        tasks_from: main.yml
