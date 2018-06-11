@@ -21,6 +21,7 @@
   firewalld:
     port: 8080/tcp
     permanent: true
+    immediate: yes
     state: enabled
 
 - name: create tomcat default web directory
