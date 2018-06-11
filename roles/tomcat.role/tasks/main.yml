@@ -12,6 +12,17 @@
     state: started
     enabled: yes
 
+- name: Ensure Firewalld service is up and running
+  service:
+    name: firewalld
+    state: started
+
+- name: Ensure Firewall port is open for Tomcat
+  firewalld:
+    port: 8080/tcp
+    permanent: true
+    state: enabled
+
 - name: create tomcat default web directory
   file:
     path: "{{ tomcat_web_root }}"
