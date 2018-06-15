@@ -1,0 +1,12 @@
+---
+- name: Ensure {{ os_router_name }} Router is {{ os_router_state }}
+  os_router:
+    cloud: {{ os_cloud_name }}
+    state: {{ os_router_state}}
+    name: {{ os_router_name }}
+    network: pubnetwork1
+    external_fixed_ips:
+      - subnet: public
+        ip: 10.10.10.3
+    interfaces:
+      - private

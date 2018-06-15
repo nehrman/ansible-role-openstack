@@ -1,8 +1,0 @@
----
-instance_name: app2
-instance_flavor: m1.small
-instance_image: rhel-server-7.4-x86_64
-instance_keypair: "{{ keypair_name }}"
-instance_meta: "group=apps,deployment_name=QA"
-instance_network: "net-name=priv-net"
-instance_secgroups: sg_apps

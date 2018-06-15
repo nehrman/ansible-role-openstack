@@ -1,0 +1,7 @@
+---
+- name: Ensure {{ os_network_pub_name }} Public Network is {{ os_network_pub_state }}
+  os_network:
+    name: "{{ os_network_pub_name }}"
+    state: "{{ os_network_pub_state }}"
+    cloud: “{{ os_cloud_name }}”
+    external: true

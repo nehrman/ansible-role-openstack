@@ -1,0 +1,6 @@
+---
+- name: Ensure {{ os_network_priv_name }} Private Network is {{ os_network_priv_state }}
+  os_network:
+    name: "{{ os_network_priv_name }}"
+    state: "{{ os_network_priv_state }}"
+    cloud: “{{ os_cloud_name }}”

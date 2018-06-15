@@ -1,0 +1,22 @@
+---
+- name: Ensure floating IP to "{{ os_instance_name }}" is {{ os_floating_ip_state }}
+  os_floating_ip:
+    server: "{{ os_instance_name }}"
+    cloud: "{{ os_cloud_name }}"
+    network: "{{ osp_pub_network }}"
+    state: "{{ os_floating_ip_state }}"
+    reuse: yes
+    wait: true
+    timeout: 180
+  register: os_instance_floatingip_r
+
+- name: show "{{ instance_name }}" public ip
+  debug: var=os_instance_floatingip_r.floating_ip.floating_ip_address
+
+- name: Wait for "{{ instance_name }}" to be available
+  wait_for:
+    host: "{{ os_instance_floatingip_r.floating_ip.floating_ip_address }}"
+    port: 22
+    search_regex: OpenSSH
+    timeout: 600
+  delegate_to: localhost

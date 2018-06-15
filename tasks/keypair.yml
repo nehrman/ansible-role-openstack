@@ -4,12 +4,12 @@
   user:
     name: "{{ ansible_env.USER }}"
     generate_ssh_key: yes
-    home: "{{ keypair_path }}"
+    home: "{{ os_keypair_path }}"
     ssh_key_file: "{{ keypair_path }}/{{ keypair_name }}_id_rsa"
 
 - name: Ensure Keyair is present
   os_keypair:
-    name: "{{ keypair_name }}"
+    name: "{{ os_keypair_name }}"
     state: present
-    cloud: "{{ cloud_name }}"
-    public_key_file: "{{ keypair_path }}/{{ keypair_name }}_id_rsa.pub"
+    cloud: "{{ os_cloud_name }}"
+    public_key_file: "{{ os_keypair_path }}/{{ os_keypair_name }}_id_rsa.pub"
