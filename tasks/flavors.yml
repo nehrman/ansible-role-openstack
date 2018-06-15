@@ -1,0 +1,13 @@
+---
+# tasks file for osp_customflavor
+- name: Ensure Custom Flavor is {{ os_flavor_state }}
+  os_nova_flavor:
+    name: "{{ os_flavor }}"    
+    cloud: "ospcloud"
+    ram: "{{ os_flavor_ram }}"
+    vcpus: "{{ os_flavor_vcpu }}"
+    disk: "{{ os_flavor_disk }}"
+    ephemeral: "{{ os_flavor_epehemeral | default(0) }}"
+    swap: "{{ os_flavor_swap | default(0) }}"
+    is_public: “{{ os_flavor_public | default(yes) }}”
+    state: "{{ os_flavor_state }}"
