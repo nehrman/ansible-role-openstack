@@ -1,0 +1,22 @@
+---
+# tasks file for ./roles/osp_securitygroups
+- name: Ensure {{ os_sg_name }} Security Groups is {{ os_sg_state }}
+  os_security_group:
+    name: "{{ os_sg_name }}"
+    state: "{{ os_sg_state }}"
+    cloud: "{{ os_cloud_name }}"
+    description: "{{ os_sg_desc }}"
+
+- name: Ensure {{ os_sg_name }} Security Groups Rules is {{ os_sg_rule_state }}
+  os_security_group_rule:
+    state: "{{ os_sg_rule_state }}"
+    cloud: "{{ os_cloud_name }}"
+    security_group: "{{ os_sg_name }}"
+    protocol: "{{ item.proto }}"
+    port_range_min: "{{ item.port }}"
+    port_range_max: "{{ item.port }}"
+    remote_ip_prefix: "{{ item.prefix }}"
+  with_dict:
+    - { port: '80', prefix: '0.0.0.0/0' }
+    - { port: '22', prefix: '0.0.0.0/0' }
+    - { port: '443', prefix: '0.0.0.0/0' }
