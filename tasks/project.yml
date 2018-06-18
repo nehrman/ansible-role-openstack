@@ -1,0 +1,8 @@
+---
+
+- name: Ensure {{ os_project_name }} is {{ os_project_state }}
+  os_project:
+    cloud: " {{ os_cloud_name }} "
+    name: "{{ os_project_name }}"
+    description: "{{ os_project_desc }}"
+    state: "{{ os_project_state }}"
