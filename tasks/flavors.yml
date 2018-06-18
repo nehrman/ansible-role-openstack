@@ -2,7 +2,7 @@
 # tasks file for osp_customflavor
 - name: Ensure Custom Flavor is {{ os_flavor_state }}
   os_nova_flavor:
-    name: "{{ os_flavor }}"    
+    name: "{{ os_flavor_name }}"
     cloud: "ospcloud"
     ram: "{{ os_flavor_ram }}"
     vcpus: "{{ os_flavor_vcpu }}"
